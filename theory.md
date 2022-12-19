@@ -38,8 +38,18 @@
 #endif
 ```
 
+# How a C++ program turns into an executable file
+
+0. Processing by the **preprocessor**. The preprocessor language is a special programming language built into C++. The preprocessor works with C++ code as with text. The commands of the preprocessor language are called **directives**, all directives begin with the # sign. 
+0. **Compilation**. The compiler receives C++ code as input after processing by the preprocessor. Each code file is compiled separately and independently from other code files. Only files with code (i.e. \*.cpp) are compiled. At the output of the compiler, an “object file” is obtained from each file with the code — a binary file with compiled code (with the extension .o or .obj). 
+0. **Linking**. At this stage, all object files are combined into one executable (or library) file. There is a substitution of addresses of functions in
+the places of their call. For each object file, a table of all the functions that are defined in it is built.
+
 # Syntax
-- In C/C++, commands starting with #(lattice) are called **preprocessors**. Зreprocessors are instructions for the compiler how to work with code. They are triggered before compilation. For example, when the compiler reads the code, it sees the #include instruction and pulls the corresponding file to that place.
+-  The **#include** directive allows you to connect header files to code files.
+#include <foo.h> — library header file,
+#include "bar.h" — local header file.
+The preprocessor replaces the #include "bar.h" directive with the contents of the bar.h file.
 - The **extern** keyword allows you to tell the compiler that a variable only needs to be declared, and there is no need to allocate memory for it - memory for it must be allocated elsewhere (perhaps even in another file). Example:
 ```
 extern int a;
