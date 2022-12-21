@@ -15,3 +15,7 @@ Macros `MAX(x, y, r)` for find maximum number between `x` and `y`, `r` = maximum
 ## 04_myStrcat
 
 Implementation of strcat() for char arrays. Using pointers.
+
+## 05_myStrstr
+
+Implementation of strstr() for char arrays. Using pointers.
