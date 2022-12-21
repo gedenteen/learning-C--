@@ -37,15 +37,19 @@
 <header file contents>
 #endif
 ```
+- A **call stack** is a data segment used to store local variables and temporary values. In it, you can refer to any cell. The stack is allocated when the program starts. Functions store their local variables on the stack. When the function exits, the corresponding stack area is declared free. Intermediate values that occur when calculating complex expressions are also stored on the stack.
 
 # How a C++ program turns into an executable file
 
-0. Processing by the **preprocessor**. The preprocessor language is a special programming language built into C++. The preprocessor works with C++ code as with text. The commands of the preprocessor language are called **directives**, all directives begin with the # sign. 
-0. **Compilation**. The compiler receives C++ code as input after processing by the preprocessor. Each code file is compiled separately and independently from other code files. Only files with code (i.e. \*.cpp) are compiled. At the output of the compiler, an “object file” is obtained from each file with the code — a binary file with compiled code (with the extension .o or .obj). 
-0. **Linking**. At this stage, all object files are combined into one executable (or library) file. There is a substitution of addresses of functions in
+1. Processing by the **preprocessor**. The preprocessor language is a special programming language built into C++. The preprocessor works with C++ code as with text. The commands of the preprocessor language are called **directives**, all directives begin with the # sign. 
+1. **Compilation**. The compiler receives C++ code as input after processing by the preprocessor. Each code file is compiled separately and independently from other code files. Only files with code (i.e. \*.cpp) are compiled. At the output of the compiler, an “object file” is obtained from each file with the code — a binary file with compiled code (with the extension .o or .obj). 
+1. **Linking**. At this stage, all object files are combined into one executable (or library) file. There is a substitution of addresses of functions in
 the places of their call. For each object file, a table of all the functions that are defined in it is built.
 
 # Syntax
+
+Note: this section does NOT provide basic information about C++ syntax.
+
 -  The **#include** directive allows you to connect header files to code files.
 #include <foo.h> — library header file,
 #include "bar.h" — local header file.
@@ -54,3 +58,21 @@ The preprocessor replaces the #include "bar.h" directive with the contents of th
 ```
 extern int a;
 ```
+- The operators (+, -, \*, /, %) for built-in C++ types always operate on the same argument types. If the arguments are of different types, then type conversion (promotion) occurs. **Type casting** is used to change the type of a variable. Example:
+```
+int a = 20;
+int b = 50;
+double c = (double)a / b;
+```
+- A **pointer** is a variable that stores the address of a memory location. Pointers have a specific type.
+```
+int i = 3; //value
+int *p = &i; //pointer
+```
+- To change a variable in another function, you need to pass this variable by address. Example:
+```
+foo(num); //by value
+foo(&num); //by address
+```
+- An array is a set of elements of the same type located in memory one after another, which are accessed by an index. `p[k]` is equivalent to `*(p + k)`.
+- When passing an array to a function, a pointer to an array is passed (the array is not copied).
