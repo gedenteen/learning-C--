@@ -11,3 +11,7 @@ A program for solving quadratic equations of the form `a*x^2 + b*x + c = 0`. The
 ## 03_macrosMax
 
 Macros `MAX(x, y, r)` for find maximum number between `x` and `y`, `r` = maximum number.
+
+## 04_myStrcat
+
+Implementation of strcat() for char arrays. Using pointers.
