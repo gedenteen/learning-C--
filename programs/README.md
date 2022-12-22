@@ -23,3 +23,7 @@ Implementation of strstr() for char arrays. Using pointers.
 ## 06_swapViaReferences
 
 Fucntion swap() with using references.
+
+## 07_myGetline
+
+Implementation of getline(). Using dynamic memory. 
