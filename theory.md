@@ -76,3 +76,23 @@ foo(&num); //by address
 ```
 - An array is a set of elements of the same type located in memory one after another, which are accessed by an index. `p[k]` is equivalent to `*(p + k)`.
 - When passing an array to a function, a pointer to an array is passed (the array is not copied).
+- A **reference (or alias)** is a type of variable in C++ that works as an alias of another object or value. Example:
+```
+void swap (int & a , int & b) {
+	int t = b;
+	b = a;
+	a = t;
+}
+int main () {
+	int k = 10 , m = 20;
+	swap (k , m);
+	cout << k << ’ ’ << m << endl; // 20 10
+	return 0;
+}
+```
+- The reference cannot be uninitialized. The reference does not have a null value. You cannot change the reference itself after initialization. Yon cannot get the address of reference or reference to the refrence. You cannot create arrays of references. There is no arithmetic for references.
+- References in C++ are used not only to pass mutable parameters to functions, but also to pass large parameters that are expensive to copy.
+- If we want to avoid unnecessary copying when passing parameters, but do not want to allow the parameter to be changed inside the function, it should be passed by constant reference:
+```
+int foo(string const &s) { /* the value of s cannot be changed */ }
+```
