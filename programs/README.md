@@ -19,3 +19,7 @@ Implementation of strcat() for char arrays. Using pointers.
 ## 05_myStrstr
 
 Implementation of strstr() for char arrays. Using pointers.
+
+## 06_swapViaReferences
+
+Fucntion swap() with using references.
