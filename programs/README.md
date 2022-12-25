@@ -26,4 +26,8 @@ Fucntion swap() with using references.
 
 ## 07_myGetline
 
-Implementation of getline(). Using dynamic memory. 
+Implementation of getline(). Using dynamic memory.
+
+## 08_myString
+
+Class String. Fields: array of chars, size of this array. Methods: constructors, destructor, append other String to this String. 
