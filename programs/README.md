@@ -31,3 +31,7 @@ Implementation of getline(). Using dynamic memory.
 ## 08_myString
 
 Class String. Fields: array of chars, size of this array. Methods: constructors, destructor, append other String to this String. 
+
+## 09_getPrivateFields
+
+Implementation of the method for obtaining private class fields. The method is to create a copy of the class but with public fields. They have the same memory offsets for the fields. To get private fields, an object of a "private" class is brought to an object of a "public" class.
