@@ -35,3 +35,7 @@ Class String. Fields: array of chars, size of this array. Methods: constructors,
 ## 09_getPrivateFields
 
 Implementation of the method for obtaining private class fields. The method is to create a copy of the class but with public fields. They have the same memory offsets for the fields. To get private fields, an object of a "private" class is brought to an object of a "public" class.
+
+## 10_copyingAndAssigningObjects
+
+This program copies and assigns objects of the class. Dynamic memory is allocated in the constructor of this class. If you use a copy constructor that simply copies the contents of memory (such a constructor creates a compiler by default), an error will occur - dynamic memory will be released several times when the program ends. The same problem with the assignment operator (=). I wrote the copy constructor and the = operator, which are called when copying and assigning objects, they work correctly with memory.
