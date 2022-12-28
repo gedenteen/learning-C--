@@ -108,6 +108,68 @@ delete m; // freeing memory
 m = new int [1000];
 delete [] m; // freeing memory
 ```
+- The **const** keyword allows define typed constants. The word "const" makes the type to the left of it ummutable.
+- You can define both a constant pointer and a pointer to a constant:
+```
+int a = 10;
+const int * p1 = &a; // pointer to a constant
+int const * p2 = &a; // pointer to a constant
+*p1 = 20; // error
+p2 = 0; // ok
+
+int * const p3 = &a; // constant pointer
+*p3 = 30; //ok
+p3 = 0; //error
+
+// constant pointer to the constant
+int const * const p4 = &a;
+*p4 = 30; // error
+p4 = 0; // error
+```
+- The **mutable** keyword allows you to define fields that can be changed inside constant methods:
+```
+struct IntArray {
+	size_t size () const {
+		++counter_;
+		return size_;
+	}
+private :
+	size_t size_;
+	int * data_;
+	mutable size_t counter_;
+};
+```
+- In order to prohibit copying an object, you need to declare the copy constructor and assignment operator as private and not define them.
+```
+struct IntArray {
+	...
+private :
+	IntArray(IntArray const &a);
+	IntArray & operator=(IntArray const &a);
+	
+	size_t size_;
+	int * data_;
+};
+```
+- The **explicit** keyword is written before the constructor name, it prohibits implicit conversions:
+```
+class SomeString
+{
+private:
+	std::string m_string;
+public:
+	explicit SomeString(int a) // выделяем строку размером a
+	{
+		m_string.resize(a);
+	}
+};
+
+int main()
+{
+	SomeString mystring = 'a'; // compilation error
+}
+```
+
 
 ## Object-oriented programming in C++
 
