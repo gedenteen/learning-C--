@@ -42,16 +42,20 @@ Only the fields of the parent class are copied.
 
 Public and protected methods of the parent class can be called for objects of the descendant class. The descendant class does not have access to the private members of the parent class. The protected modifier is used to determine the private members of the class available to heirs.
 
-## Function overloading
+## Polymorphism
+
+Polymorphism is the ability to uniformly process different types of data.
+
+### Function overloading
 
 Unlike C, in C++, you can define several functions with the same name but different parameters.
 ```
 double square (double d) { return d * d; }
 int square (int i) { return i * i; }
 ```
-When calling a function by name, the compiler will find the most appropriate function.
+Function selection occurs at the time of compilation based on the types of function arguments, this is **static polymorphism**.
 
-## Methods overloading
+### Methods overloading
 
 Overloading is also available for methods. To overload a method from the parent class, specify it in the child class:
 ```
@@ -64,6 +68,66 @@ struct FormattedFile : File {
 	void write(int i);
 	void write(double d);
 	using File::write;
+	...
+};
+```
+
+### Methods overriding
+
+Overriding methods is replacing a method in a parent class with a method from a child class. Both methods must have the same signature (name + parameters).
+```
+struct Person {
+	string name () const { return name_ ; }
+	...
+};
+
+struct Professor : Person {
+	string name () const {
+		return " Prof . " + Person :: name ();
+	}
+	...
+};
+...
+	Professor pr("Stroustrup");
+	cout << pr.name() << endl; // Prof. Stroustrup
+	Person * p = &pr;
+	cout << p->name() << endl; // Stroustrup
+```
+
+### Virtual methods
+
+A virtual method is a class method that can be overridden in descendant classes so that the specific implementation of the method to call will be determined at runtime (not during the compilation).
+```
+struct Person {
+	virtual string name () const { return name_ ; }
+	...
+};
+
+struct Professor : Person {
+	string name () const {
+		return " Prof . " + Person::name ();
+	}
+	...
+};
+...
+	Professor pr("Stroustrup");
+	cout << pr.name() << endl; // Prof. Stroustrup
+	Person * p = &pr;
+	cout << p->name() << endl; // Prof. Stroustrup
+```
+
+The method is selected at the time of execution based on the type of object from which the virtual method is called, this is **dynamic polymorphism**.
+
+### Pure virtual (abstract) methods
+
+An abstract method is a class method for which there is no implementation. When it is called, a compilation error occurs. A class containing abstract methods is also commonly called abstract. An abstract method can be used to override in child classes.
+```
+struct Person {
+	virtual string occupation () const = 0;
+	...
+};
+struct Student : Person {
+	string occupation () const { return " student "; }
 	...
 };
 ```
