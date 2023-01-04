@@ -1,5 +1,11 @@
 # Object-oriented programming in C++
 
+Object-oriented programming is a programming concept based on the concepts of objects (instances of the class) and classes (description of something in the code). Basic principles:
+* encapsulation (the principle of independence of data that is "in the capsule")
+* inheritance (the ability to create a child class from another class by inheriting its fields and methods)
+* polymorphism (ability to work with child classes via a pointer to the parent class)
+* abstraction (highlighting the most significant characteristics of an object)
+
 ## Inheritance
 
 Inheritance is a mechanism that allows you to create derived classes by extending existing ones.
@@ -116,7 +122,7 @@ struct Professor : Person {
 	cout << p->name() << endl; // Prof. Stroustrup
 ```
 
-The method is selected at the time of execution based on the type of object from which the virtual method is called, this is **dynamic polymorphism**.
+The method is selected at the time of execution based on the type of object from which the virtual method is called, this is **dynamic polymorphism**. A **table of virtual methods** is created for each polymorphic class.
 
 ### Pure virtual (abstract) methods
 
