@@ -40,6 +40,42 @@ Person p = s ; // Person("Alex", 21);
 ```
 Only the fields of the parent class are copied.
 
+### Multiple inheritance
+
+Multiple inheritance allows you to inherit the contents of some classes, but this can lead to errors.
+```
+class USBDevice
+{
+private:
+	long m_id;
+public:
+	USBDevice(long id) : m_id(id) {}
+	long getID() { return m_id; }
+};
+ 
+class NetworkDevice
+{
+private:
+	long m_id;
+public:
+	NetworkDevice(long id) : m_id(id) {}
+	long getID() { return m_id; }
+};
+ 
+class WirelessAdapter: public USBDevice, public NetworkDevice
+{
+public:
+	WirelessAdapter(long usbId, long networkId) : USBDevice(usbId), NetworkDevice(networkId) {}
+};
+ 
+int main()
+{
+	WirelessAdapter c54G(6334, 292651);
+	std::cout << c54G.getID(); // which version of get ID() should be called here?
+	return 0;
+}
+```
+
 ## Access Modifiers
 
 - **Public** — access is open to all other classes who see the definition of this class.
