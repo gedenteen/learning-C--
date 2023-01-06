@@ -169,3 +169,13 @@ int main()
 	SomeString mystring = 'a'; // compilation error
 }
 ```
+
+## Other info
+
+In C++ using **short-circuit evaluation** - the second logical operator is executed or evaluated only if the first logical operator is not sufficient to determine the value of the expression. Thus, after the result of the expression becomes obvious, its calculation stops. Example:
+```
+int a = 0;
+int b = 5;
+( a != 0) && ( b = b / a ); // only the left operand will be executed
+( a == 0) || ( b = b / a ); // only the left operand will be executed
+```
