@@ -29,14 +29,14 @@ When creating an object of a child class, the constructor of the parent class is
 
 The following **casts** are defined for derived classes:
 ```
-Student s ( " Alex " , 21 , " Oxford " );
-Person & l = s ; // Student & -> Person &
-Person * r = & s ; // Student * -> Person *
+Student s("Alex", 21, "Oxford");
+Person & l = s; // Student & -> Person &
+Person * r = &s; // Student * -> Person *
 ```
 Therefore, objects of the child class can be assigned to objects of the parent class:
 ```
-Student s ( " Alex " , 21 , " Oxford " );
-Person p = s ; // Person("Alex", 21);
+Student s("Alex", 21, "Oxford");
+Person p = s; // Person("Alex", 21);
 ```
 Only the fields of the parent class are copied.
 
@@ -192,4 +192,50 @@ struct Point {
 	double k = 5.1;
 	Point p3(int(k)); // function declaration
 	Point p4((int)k); // definition of variable
+```
+
+The **mutable** keyword allows you to define fields that can be changed inside constant methods:
+```
+struct IntArray {
+	size_t size () const {
+		++counter_;
+		return size_;
+	}
+private :
+	size_t size_;
+	int * data_;
+	mutable size_t counter_;
+};
+```
+
+In order to prohibit copying an object, you need to declare the copy constructor and assignment operator as private and not define them.
+```
+struct IntArray {
+	...
+private :
+	IntArray(IntArray const &a);
+	IntArray & operator=(IntArray const &a);
+	
+	size_t size_;
+	int * data_;
+};
+```
+
+The **explicit** keyword is written before the constructor name, it prohibits implicit conversions:
+```
+class SomeString
+{
+private:
+	std::string m_string;
+public:
+	explicit SomeString(int a) // выделяем строку размером a
+	{
+		m_string.resize(a);
+	}
+};
+
+int main()
+{
+	SomeString mystring = 'a'; // compilation error
+}
 ```

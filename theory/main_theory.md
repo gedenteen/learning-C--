@@ -126,49 +126,6 @@ int const * const p4 = &a;
 *p4 = 30; // error
 p4 = 0; // error
 ```
-- The **mutable** keyword allows you to define fields that can be changed inside constant methods:
-```
-struct IntArray {
-	size_t size () const {
-		++counter_;
-		return size_;
-	}
-private :
-	size_t size_;
-	int * data_;
-	mutable size_t counter_;
-};
-```
-- In order to prohibit copying an object, you need to declare the copy constructor and assignment operator as private and not define them.
-```
-struct IntArray {
-	...
-private :
-	IntArray(IntArray const &a);
-	IntArray & operator=(IntArray const &a);
-	
-	size_t size_;
-	int * data_;
-};
-```
-- The **explicit** keyword is written before the constructor name, it prohibits implicit conversions:
-```
-class SomeString
-{
-private:
-	std::string m_string;
-public:
-	explicit SomeString(int a) // выделяем строку размером a
-	{
-		m_string.resize(a);
-	}
-};
-
-int main()
-{
-	SomeString mystring = 'a'; // compilation error
-}
-```
 
 ## Other info
 
